@@ -1,0 +1,25 @@
+class Solution:
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        MOD = 10**9 + 7
+
+        def isOutOfBound(x, y):
+            return x < 0 or y < 0 or x >= m or y >= n
+
+        total_paths = 0
+        position_counts = {(startRow, startColumn): 1}
+
+        for _ in range(maxMove):
+            new_position_counts = {}
+            for (i, j), count in position_counts.items():
+                for x, y in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                    a, b = i + x, j + y
+                    if isOutOfBound(a, b):
+                        total_paths = (total_paths + count) % MOD
+                    else:
+                        if (a, b) in new_position_counts:
+                            new_position_counts[(a, b)] += count
+                        else:
+                            new_position_counts[(a, b)] = count
+            position_counts = new_position_counts
+
+        return total_paths
