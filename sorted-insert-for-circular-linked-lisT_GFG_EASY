@@ -1,0 +1,17 @@
+class Solution:
+    def sortedInsert(self, head, data):
+        if not head:
+            head=Node(data)
+            head.next=head
+            return head
+        prv=head
+        cur=head.next
+        while cur:
+            if cur==head and (prv.data<=data or data<=head.data) or prv.data<=data<=cur.data:
+                prv.next=Node(data)
+                prv.next.next=cur
+                if cur==head and data<=head.data:
+                    return prv.next
+                return head
+            prv=cur
+            cur=cur.next
