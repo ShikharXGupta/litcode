@@ -1,0 +1,12 @@
+class Solution:
+    def numberOfPath (self, n, k, arr):
+        from functools import lru_cache
+        @lru_cache(None)
+        def dp(x=n-1,y=n-1,c=k):
+            nonlocal arr,k
+            if x<0 or y<0 or c<0:
+                return 0
+            if x==0 and y==0:
+                return int(c==arr[y][x])
+            return dp(x-1,y,c-arr[y][x])+dp(x,y-1,c-arr[y][x])
+        return dp()
