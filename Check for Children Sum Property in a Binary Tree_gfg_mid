@@ -1,0 +1,28 @@
+class Solution:
+    #Function to check whether all nodes of a tree have the value 
+    #equal to the sum of their child nodes.
+    def isSumProperty(self, root):
+        if not root or not root.left and not root.right:
+            return 1
+
+        
+        if root.left and root.right:
+            sum_val = root.left.data + root.right.data
+        elif root.left:
+            sum_val = root.left.data
+        elif root.right:
+            sum_val = root.right.data
+        else:
+            sum_val = 0
+
+        if root.data != sum_val:
+            return 0
+
+        
+        left_prop = self.isSumProperty(root.left)
+        right_prop = self.isSumProperty(root.right)
+
+        if left_prop and right_prop:
+            return 1
+        else:
+            return 0
