@@ -1,0 +1,13 @@
+class Solution:
+    def recamanSequence(self, n):
+        dp=[0]
+        st=set(dp)
+        for x in range(1,n):
+            ans=dp[x-1]-x
+            if ans>0 and ans not in st:
+                dp.append(ans)
+                st.add(ans)
+            else:
+                dp.append(dp[x-1]+x)
+                st.add(dp[x-1]+x)
+        return dp
