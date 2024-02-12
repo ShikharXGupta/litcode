@@ -1,0 +1,12 @@
+class Solution:
+    def sequence(self, n):
+        mod, k, sum1=1000000007, 1, 0
+        for i in range(1,n+1):
+            ans=1
+            for j in range(i):
+                ans*=k
+                ans%=mod
+                k+=1
+            sum1+=ans%mod
+            sum1%=mod
+        return sum1
