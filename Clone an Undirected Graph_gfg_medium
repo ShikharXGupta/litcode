@@ -1,0 +1,15 @@
+class Solution():
+    def cloneGraph(self, node):
+        import sys
+        sys.setrecursionlimit(10**6)
+        s = {}
+        def clone(n):
+            if not n:
+                return None
+            if n.val in s:
+                return s[n.val]
+            s[n.val] = Node(n.val, [])
+            for nbr in n.neighbors:
+                s[n.val].neighbors.append(clone(nbr))
+            return s[n.val]
+        return clone(node)
