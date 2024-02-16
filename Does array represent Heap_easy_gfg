@@ -1,0 +1,13 @@
+
+class Solution:
+    def isMaxHeap(self,arr,n):
+        def dfs(idx=0):
+            nonlocal arr,n
+            if idx>=n:
+                return True
+            if not ((idx<<1)+1>=n or arr[idx]>=arr[(idx<<1)+1]):
+                return False
+            if not ((idx<<1)+2>=n or arr[idx]>=arr[(idx<<1)+2]):
+                return False
+            return dfs((idx<<1)+1) and dfs((idx<<1)+2)
+        return dfs()
