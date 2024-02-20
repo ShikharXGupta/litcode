@@ -1,0 +1,18 @@
+class Solution:
+    def wordBreak(self, n, s, dictionary):
+        from collections import defaultdict
+        wlth=defaultdict(set)
+        for w in dictionary:
+            wlth[w[-1]].add(len(w))
+        m=len(s)
+        from functools import lru_cache
+        @lru_cache(None)
+        def dp(cur=m-1):
+            nonlocal dictionary,wlth
+            if cur<0:
+                return True
+            for lth in wlth[s[cur]]:
+                if s[cur-lth+1:cur+1] in dictionary and dp(cur-lth):
+                    return True
+            return False
+        return dp()
