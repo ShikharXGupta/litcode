@@ -1,0 +1,17 @@
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        # Initialize two lists to keep track of trusts
+        trusts = [0] * (n + 1)  # How many people trust this person
+        trusted_by = [0] * (n + 1)  # How many people this person trusts
+
+        # Fill in the lists based on the trust relationships
+        for a, b in trust:
+            trusts[a] += 1  # Person a trusts someone else
+            trusted_by[b] += 1  # Person b is trusted by someone else
+
+        # Check for the town judge
+        for i in range(1, n + 1):
+            if trusts[i] == 0 and trusted_by[i] == n - 1:
+                return i  # Found the town judge
+
+        return -1  # No town judge found
