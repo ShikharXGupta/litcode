@@ -1,0 +1,14 @@
+class Solution:
+    def maxSum(self, n): 
+        def solve(num,dp):
+            if num<=1:
+                return num
+            if num in dp:
+                return dp[num]
+            temp=0
+            temp+=solve(num//2,dp)
+            temp+=solve(num//3,dp)
+            temp+=solve(num//4,dp)
+            dp[num]=max(num,temp)
+            return dp[num]
+        return solve(n,{})
