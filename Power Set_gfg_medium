@@ -1,0 +1,12 @@
+class Solution:
+	def AllPossibleStrings(self, s):
+	    self.subsequence=[]
+        def track(ind, cur):
+            if ind>=len(s):
+                if cur!="":
+                    self.subsequence.append(cur)
+                return
+            track(ind+1,cur+s[ind])
+            track(ind+1,cur)
+        track(0,"")
+        return sorted(self.subsequence)
