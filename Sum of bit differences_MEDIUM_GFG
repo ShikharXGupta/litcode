@@ -1,0 +1,19 @@
+class Solution:
+
+	
+	def sumBitDifferences(self,arr, n):
+	    l=[0]*(33)
+	    ma=len(bin(max(arr))[2:])
+	    for i in range (n):
+    	    
+    	    bi=bin(arr[i])[2:]
+    	    bi=(ma-len(bi))*"0"+bi
+    	    for j in range(ma):
+    	        
+    	        if(bi[j]=="1"):
+    	            l[j]+=1
+    	ans=0
+    	
+    	for i in l:
+    	    ans+=i*(n-i)
+    	return(ans*2)
