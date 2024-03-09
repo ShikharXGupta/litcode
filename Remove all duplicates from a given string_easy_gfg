@@ -1,0 +1,12 @@
+class Solution:
+
+	
+	def removeDuplicates(self,str):
+	    unique_set = set()
+        final_list = []
+        for char in str:
+            if char not in unique_set:
+                unique_set.add(char)
+                final_list.append(char)
+        ans = ''.join(final_list)
+        return ans
