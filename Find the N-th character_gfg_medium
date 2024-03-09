@@ -1,0 +1,10 @@
+class Solution:
+    def nthCharacter(self, s, r, n):
+        # code here
+        def findChar(level,index):
+            if level==0:
+                return s[index]
+            char=findChar(level-1,index//2)
+            seq="01" if char=="0" else "10"
+            return seq[0] if index%2==0 else seq[1]
+        return findChar(r,n)
