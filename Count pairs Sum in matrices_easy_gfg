@@ -1,0 +1,12 @@
+class Solution:
+	def countPairs(self, mat1, mat2, n, x):
+	    s = set()
+	    pair = 0
+	    for i in mat1:
+	        for j in i:
+	            s.add(j)
+	    for i in mat2:
+	        for j in i:
+	            if x-j in s:
+	                pair += 1
+	    return pair
