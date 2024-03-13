@@ -1,0 +1,24 @@
+class Solution:
+    def matrixDiagonally(self,mat):
+        n = len(mat)
+        res = []
+        
+        # Loop over the matrix diagonally.
+        for d in range(2 * n - 1):
+            
+            if d % 2 == 0:
+                row = min(d, n - 1)
+                col = max(0, d - n + 1)
+                while row >= 0 and col < n:
+                    res.append(mat[row][col])
+                    row -= 1
+                    col += 1
+            else:
+                row = max(0, d - n + 1)
+                col = min(d, n - 1)
+                while row < n and col >= 0:
+                    res.append(mat[row][col])
+                    row += 1
+                    col -= 1
+                    
+        return res
