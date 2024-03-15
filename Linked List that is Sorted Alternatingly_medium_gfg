@@ -1,0 +1,18 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class Solution:
+    def sort(self, h1):
+        left = h1
+        right = None
+        while left.next:
+            temp = left.next.next
+            left.next.next = right
+            right = left.next
+            left.next = temp
+            if left.next:
+                left = left.next
+        left.next = right
+        return h1
