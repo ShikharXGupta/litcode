@@ -1,0 +1,19 @@
+class Solution:
+    def levelOrder(self,root ):
+        if not root:
+            return []
+        
+        q=[]  # queue to store nodes
+        q.append(root)
+        ans=[] # list to store the data 
+        
+        while len(q)>0:
+            ans.append(q[0].data)
+            temp = q.pop(0)
+ 
+            if temp.left:
+                q.append(temp.left)
+            if temp.right:
+                q.append(temp.right)
+                
+        return ans
