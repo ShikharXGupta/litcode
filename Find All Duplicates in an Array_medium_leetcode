@@ -1,0 +1,11 @@
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        duplicates = set()
+        n = len(nums)
+        arr = [0]*(n+1)
+        for num in nums:
+            if arr[num]:
+                duplicates.add(num)
+            else:
+                arr[num] = 1
+        return duplicates
