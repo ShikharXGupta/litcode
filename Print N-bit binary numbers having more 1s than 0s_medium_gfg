@@ -1,0 +1,14 @@
+class Solution:
+    def find(self,n,ans,temp,zero,one):
+        if len(temp)==n:
+            ans.append(temp)
+            return
+        self.find(n,ans,temp+'1',zero,one+1)
+        if zero<one:
+            self.find(n,ans,temp+'0',zero+1,one)
+        
+    def NBitBinary(self, n):
+        ans=[]
+        temp=''
+        self.find(n,ans,temp,0,0)
+        return ans
