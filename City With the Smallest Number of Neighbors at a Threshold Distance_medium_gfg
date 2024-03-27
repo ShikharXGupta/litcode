@@ -1,0 +1,35 @@
+from collections import defaultdict
+import heapq
+from typing import List
+class Solution:
+    def dijkstra(self,V,adj,S):
+        dist = [float("inf")] * V
+        pq = [(0,S)]
+        dist[S] = 0
+        while pq:
+            dis,node = heapq.heappop(pq)
+            for i in adj[node]:
+                adjWt = i[1]
+                adjNode = i[0]
+                if adjWt + dis < dist[adjNode]:
+                    dist[adjNode] = adjWt + dis
+                    heapq.heappush(pq,(dist[adjNode],adjNode))
+        return dist
+    def findCity(self, n : int, m : int, edges : List[List[int]], distanceThreshold : int) -> int:
+        adj = defaultdict(list)
+        for i in edges:
+            adj[i[0]].append((i[1],i[2]))
+            adj[i[1]].append((i[0],i[2]))
+        cityCnt = 10**7
+        cityNo = -1
+        for city in range(n):
+            #  counter for every city
+            dist = self.dijkstra(n,adj,city)
+            count = 0
+            for adjCity in dist:
+                if adjCity <= distanceThreshold:
+                    count += 1
+            if count <= cityCnt:
+                cityCnt = count
+                cityNo = city
+        return cityNo
