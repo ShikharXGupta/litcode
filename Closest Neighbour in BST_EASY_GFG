@@ -1,0 +1,13 @@
+class Solution:
+    def findMaxForN(self, root, n):
+        maxi = -1
+        def traverse(root):
+            nonlocal maxi  
+            if root is None:
+                return
+            if root.key <= n and root.key > maxi:
+                maxi = root.key
+            traverse(root.left)
+            traverse(root.right)
+        traverse(root)
+        return maxi
