@@ -1,0 +1,19 @@
+class Solution:
+    def kthCommonAncestor(self, root, k, x, y):
+        # Code here
+        arr=[]
+        def fun(root,x,y,arr):
+            if root.data>x>y or root.data>y>x:
+                arr.append(root.data)
+                return fun(root.left,x,y,arr)
+            elif root.data<x<y or root.data<y<x:
+                arr.append(root.data)
+                return fun(root.right,x,y,arr)
+            else:
+                arr.append(root.data)
+                return arr
+        arr = fun(root,x,y,arr)
+        n=len(arr)
+        if n<k:
+            return -1
+        return arr[n-k]
