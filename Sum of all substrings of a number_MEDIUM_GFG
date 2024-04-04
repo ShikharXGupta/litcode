@@ -1,0 +1,8 @@
+def sumSubstrings(self,s):
+        n = len(s)
+        M = 10**9+7
+        # dp[i] means the sum of substring that end at i position
+        dp = [0]*(n+1)
+        for i in range(n):
+            dp[i+1] = (dp[i]*10+(i+1)*(ord(s[i])-ord('0')))%M
+        return sum(dp)%M
