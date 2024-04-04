@@ -1,0 +1,13 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        stack=[]
+        par=['[','{','(']
+        opar=['}',']',')']
+        res=0
+        for i in s:
+            if i in par:
+                stack.append(i)
+                res=max(res,len(stack))
+            if i in opar:
+                stack.pop()
+        return res
