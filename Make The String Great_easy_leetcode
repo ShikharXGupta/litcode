@@ -1,0 +1,12 @@
+class Solution:
+    def makeGood(self, s: str) -> str:
+        stack = []  # Initialize an empty stack to hold characters
+        for char in s:  # Iterate through each character in the string
+            if stack and abs(ord(char) - ord(stack[-1])) == 32:  # Check if stack is not empty and the difference between ASCII values of characters is 32
+                print(f"ord char = {ord(char)}")  # Debugging print statement
+                print(f"ord -1 = {ord(stack[-1])}")  # Debugging print statement
+                stack.pop()  # Pop the top character from the stack
+            else:
+                stack.append(char)  # Push the current character onto the stack
+
+        return ''.join(stack)  # Join the characters in the stack and return the resulting string
