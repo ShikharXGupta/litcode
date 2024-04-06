@@ -1,0 +1,2 @@
+def countWays(self, n):
+        return int((n/2)+1)
