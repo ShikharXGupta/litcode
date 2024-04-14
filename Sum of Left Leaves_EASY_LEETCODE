@@ -1,0 +1,14 @@
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        result, stack = 0, [(0, root)]
+
+        while stack:
+            d, node = stack.pop()
+            if node.left:
+                stack.append((1, node.left))
+            if node.right:
+                stack.append((0, node.right))
+            if d and not node.left and not node.right:
+                result += node.val
+
+        return result
