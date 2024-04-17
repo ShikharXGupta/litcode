@@ -1,0 +1,13 @@
+class Solution:
+    def twoRepeated(self, arr , n):
+        #Your code here
+
+        pos = lambda x: abs(x)-1
+        
+        r = []
+        for e in arr:
+            p = pos(e)
+            if arr[p] < 0:
+                r.append(abs(e))
+            arr[p] *= -1
+        return r
