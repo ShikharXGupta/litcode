@@ -1,0 +1,14 @@
+class Solution:
+    def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
+        def dfs(node, path):
+            if node:
+                path.append(chr(node.val + ord('a')))
+                if not node.left and not node.right:
+                    ans.append(''.join(path[::-1]))
+                dfs(node.left, path)
+                dfs(node.right, path)
+                path.pop()
+
+        ans = []
+        dfs(root, [])
+        return min(ans)
