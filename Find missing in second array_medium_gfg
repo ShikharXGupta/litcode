@@ -1,0 +1,13 @@
+class Solution:
+    def findMissing(self,a,b,n,m):
+    # code here
+        st=set()
+        li=[]
+        for num in b:
+            st.add(num)
+        
+        for num in a:
+            if num not in st:
+                li.append(num)
+    
+        return li
