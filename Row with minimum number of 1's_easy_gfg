@@ -1,0 +1,13 @@
+class Solution:
+    def minRow(self,n,m,a):
+        #code herea
+        if not a : return 1 
+        ansc =a[0].count(1)
+        ans = 0
+        for i in  range(len(a)) :
+            c= a[i].count(1)
+            if c < ansc :
+                ansc = c 
+                ans = i 
+                
+        return ans+1 
