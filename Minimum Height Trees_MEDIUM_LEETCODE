@@ -1,0 +1,48 @@
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n == 1 or not edges:
+            return [0]
+
+        indegree = [0] * n       # degree of each node in the graph
+
+        # 1. build adjacency list for the graph
+        adj = defaultdict(set)
+        for src, des in edges:
+            adj[src].add(des)
+            adj[des].add(src)
+            indegree[src] += 1
+            indegree[des] += 1
+
+        # 2. find all leaf nodes (i.e., nodes with degree 1)
+        leaves = [i for i, degree in enumerate(indegree) if degree == 1]
+
+        # 3. repeat until we are left with 1 or 2 nodes
+        while n > 2:
+        
+            # remove the current leaf nodes along with their edges
+            n -= len(leaves)
+            temp = []
+
+            # search in current leaf
+            for leaf in leaves:
+                # since leaf has one neigh so we can use pop to get neigh
+                neig = adj[leaf].pop()
+
+                # remove current leaf from neigh adjacency lis
+                adj[neig].remove(leaf)
+
+                # update indegree array
+                indegree[leaf] -= 1
+                indegree[neig] -= 1
+            
+                # if the current neighbor becomes a new leaf node, then add it to the list
+                if indegree[neig] == 1:
+                    temp += [neig]
+        
+            # replace the leaves array with temp
+            leaves = temp
+    
+        # the remaining nodes are the roots of the MHTs
+        return leaves
+
+    
