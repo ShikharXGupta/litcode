@@ -1,0 +1,23 @@
+class Solution:
+    def deleteK(self, head, k):
+        #code here
+        current= head
+        prev=None
+        i=1
+        if k==1:
+            return None
+        while current:
+            if i==k:
+                i=1
+                if current==head:
+                    current=head.next
+                    head=None
+                    head=current
+                    
+                if prev:
+                    prev.next=current.next
+            else:
+                i+=1
+            prev=current
+            current=current.next            
+        return head
