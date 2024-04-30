@@ -1,0 +1,39 @@
+class Solution:
+    def wonderfulSubstrings(self, word: str) -> int:
+        
+        # we are representing each char with a bit, 0 for count being even and 1 for odd
+        # 10 char from a to j
+        # array to store 2^10 numbers
+        dp=[0]*1024
+        
+        # jihgfedcba -> 0000000000
+        curr=0  # 000..(0-> 10 times) 
+        
+        # since we are starting with curr as 0 make dp[0]=1
+        dp[0]=1
+        
+        # result
+        res=0
+        
+        for c in word:
+            # 1<<i sets i th bit to 1 and else to 0
+            # xor will toggle the bit
+            curr^= (1<<(ord(c)-ord('a')))
+            
+            # if curr occurred earlier at j and now at i then [j+1: i] has all zeroes
+            # this was to count all zeroes case
+            res+=dp[curr]
+            
+            # now to check if these 100000..,010000..,001.. cases  can be acheived using brute force
+            # we want to see if curr ^ delta = 10000.. or 010000.. etc
+            # curr^delta =1000... then
+            # curr ^ 1000.. = delta
+            
+            for i in range(10):
+                res+=dp[curr ^(1<<i)]      
+               
+            dp[curr]+=1       
+            
+        
+        
+        return res
