@@ -1,0 +1,24 @@
+class Solution:
+    # Function to serialize a tree and return a list containing nodes of tree.
+    def serialize(self, root):
+        def work(root, arr):
+            if not root:
+                arr.append("#")
+                return arr
+            arr.append(root.data)
+            work(root.left, arr)
+            work(root.right, arr)
+            return arr
+
+        return work(root, [])
+
+    # Function to deserialize a list and construct the tree.
+    def deSerialize(self, a):
+        c = a.pop(0)
+        if c == "#":
+            return None
+
+        r = Node(c)
+        r.left = self.deSerialize(a)
+        r.right = self.deSerialize(a)
+        return r
