@@ -1,0 +1,20 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        boat = 0
+        people.sort(reverse=True)
+        end = len(people)-1
+        for i in range(len(people)):
+            start = i
+            if start > end:
+                break
+            if start == end:
+                boat +=1
+                break
+            if people[start] >= limit :
+                boat += 1
+            elif people[start] + people[end] > limit:
+                boat += 1
+            elif people[start] + people[end] <= limit :
+                boat += 1
+                end -= 1
+        return boat
