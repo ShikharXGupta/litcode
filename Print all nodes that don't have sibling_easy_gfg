@@ -1,0 +1,21 @@
+def noSibling(root):
+    ans = []
+    stack = [(root, 1)]
+    ## code = 1: siblings, 0: Not siblinge
+    
+    while stack:
+        node, siblings = stack.pop()
+        
+        if not siblings:
+            ans.append(node.data)
+        
+        siblings = 1 if node.right and node.left else 0
+        
+        if node.right:
+            stack.append((node.right, siblings))
+        if node.left:
+            stack.append((node.left, siblings))
+    
+    ans.sort()
+    
+    return ans if len(ans)>0 else [-1]
