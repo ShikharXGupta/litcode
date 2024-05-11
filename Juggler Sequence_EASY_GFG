@@ -1,0 +1,11 @@
+def jugglerSequence(self, n):
+        l=[]
+        l.append(n)
+        while n>1:
+            if n%2==0:
+                n=int(n**0.5)
+                l.append(n)
+            else:
+                n=int(n**1.5)
+                l.append(n)
+        return l
