@@ -1,0 +1,24 @@
+class Solution:
+    def matrixScore(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        
+        # Initial row flipping
+        for i in range(m):
+            if grid[i][0] == 0:
+                for j in range(n):
+                    grid[i][j] ^= 1
+
+        # Column adjustment
+        for j in range(n):
+            count_zero = sum(grid[i][j] ^ 1 for i in range(m))
+            if count_zero > m // 2:
+                for i in range(m):
+                    grid[i][j] ^= 1
+
+        # Calculating score
+        score = 0
+        for i in range(m):
+            row_score = int(''.join(map(str, grid[i])), 2)
+            score += row_score
+
+        return score
