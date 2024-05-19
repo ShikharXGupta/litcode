@@ -1,0 +1,33 @@
+import sys
+from typing import List
+
+class Solution:
+    def findClosest(self, n : int, k : int, arr : List[int]) -> int:
+        # code here
+        ans = -1
+        adiff = sys.maxsize
+        
+        start = 0
+        end = n - 1
+        
+        while start <= end:
+            mid = (start + end) // 2
+            
+            #print(f"start: {start}  end: {end}  mid: {mid}")
+            
+            if (arr[mid] == k):
+                return arr[mid]
+            
+            tempdiff = abs(arr[mid] - k)
+            
+            if tempdiff < adiff or (tempdiff == adiff and ans < arr[mid]):
+                adiff = tempdiff
+                ans = arr[mid]
+            
+            if arr[mid] > k:
+                end = mid - 1
+            else:
+                start = mid + 1
+            
+
+        return ans
