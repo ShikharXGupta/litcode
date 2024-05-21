@@ -1,0 +1,9 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = [[]]
+        n = len(nums)
+        for i in range(n):
+            n_result = len(result)
+            for j in range(n_result):
+                result.append(result[j]+[nums[i]])
+        return result
