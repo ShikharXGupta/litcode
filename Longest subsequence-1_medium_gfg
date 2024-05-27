@@ -1,0 +1,5 @@
+def longestSubseq(self,n,a):
+    dp=dict()
+    for item in a:
+        dp[item]=1+max(dp.get(item-1,0),dp.get(item+1,0))
+    return max(dp.values())
