@@ -1,0 +1,14 @@
+
+class Solution:
+    def countTriplets(self, arr: List[int]) -> int:
+        # empty xor is 0
+        value_pos = {0: (1, 0)}
+        running_xor = 0
+        total = 0
+        for k, num in enumerate(arr):
+            running_xor ^= num
+            ord_ind, sum_of_i = value_pos.get(running_xor, (0, 0))
+            total += ord_ind * k - sum_of_i
+            value_pos[running_xor] = (ord_ind + 1, sum_of_i + k + 1)
+            # print(f"{k=}, {value_pos=}, {total=}")
+        return total
