@@ -1,0 +1,7 @@
+class Solution:
+    def swapNibbles (self, n):
+        g=format(n,"08b")
+        s=g[4:]+g[0:4]
+        
+        t=int(s,2)
+        return t
