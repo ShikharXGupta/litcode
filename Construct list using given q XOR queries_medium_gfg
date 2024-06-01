@@ -1,0 +1,14 @@
+from typing import List
+
+class Solution:
+    def constructList(self, q : int, queries : List[List[int]]) -> List[int]:
+        # code here
+        lst = []
+        x = 0
+        for i in range(q - 1, -1, -1):
+            if queries[i][0] == 0:
+                lst.append(queries[i][1] ^ x)
+            else:
+                x ^= queries[i][1]
+        lst.append(0 ^ x)
+        return sorted(lst)
