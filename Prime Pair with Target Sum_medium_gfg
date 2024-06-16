@@ -1,0 +1,15 @@
+num=10**6
+isPrime=[True]*(num+1)
+p=2
+while p*p<=num:
+    if isPrime[p]:
+        for i in range(p*p,num+1,p):
+            isPrime[i]=False
+    p+=1
+
+class Solution:
+    def getPrimes(self,n):
+        for i in range(2,(n//2)+1):
+            if isPrime[i] and isPrime[n-i]:
+                return [i,n-i]
+        return [-1,-1]
