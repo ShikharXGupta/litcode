@@ -1,0 +1,13 @@
+class Solution:
+    def compareFrac (self, str):
+        str=str.split(", ")
+        t1=str[0].split('/')
+        t2=str[1].split('/')
+        num1=int(t1[0])/int(t1[1])
+        num2=int(t2[0])/int(t2[1])
+        if num1==num2:
+            return "equal"
+        elif num1>num2:
+            return str[0]
+        else:
+            return str[1]
