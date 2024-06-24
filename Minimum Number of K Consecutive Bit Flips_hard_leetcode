@@ -1,0 +1,18 @@
+class Solution:
+    def minKBitFlips(self, nums: List[int], k: int) -> int:
+        N = len(nums)
+        flips = [0] * (N + 1) # this is our array where we do the range increments
+        curr_flips = 0 # at a particular index we we prefix sum upto that index so we maintain this variable which stores prefix sum upto that (nothing but no of filps at that index)
+        total_flips = 0
+
+        for i in range(N):
+            curr_flips += flips[i]
+            if (nums[i] + curr_flips) % 2 == 0:
+                # r - i + 1 = k => r = i + k - 1
+                if i - 1 + k >=N:
+                    return -1
+                total_flips += 1
+                curr_flips += 1
+                flips[i + k] -= 1
+        
+        return total_flips    
