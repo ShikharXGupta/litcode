@@ -1,0 +1,11 @@
+class Solution:
+    def rotateMatrix(self, k, mat):
+        # code here
+        m=len(mat)
+        for i in range(m):
+            n=len(mat[i])
+            arr = mat[i][k%n:n]+mat[i][:k%n]
+            mat[i]=arr
+        
+        return mat
+        # code here
