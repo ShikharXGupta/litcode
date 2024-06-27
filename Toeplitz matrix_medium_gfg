@@ -1,0 +1,9 @@
+def isToeplitz(mat):
+    for i in range(len(mat)):
+        for j in range(len(mat[0])):
+            try:
+                if mat[i][j] != mat[i+1][j+1]:
+                    return False
+            except:
+                continue
+    return True
