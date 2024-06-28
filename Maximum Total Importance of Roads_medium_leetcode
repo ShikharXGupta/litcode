@@ -1,0 +1,21 @@
+class Solution:
+    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
+        d = {}
+        a = {}
+        for x in roads:
+            for y in x:
+                if y in d:
+                    d[y] += 1
+                else:
+                    d[y] = 1
+        l = list(d.keys())
+        l.sort(key = lambda x : d[x],reverse = True)
+        a = {}
+        i = n
+        for x in l:
+            a[x] = i
+            i -= 1
+        ans = 0
+        for x in roads:
+            ans += a[x[0]]+a[x[1]]
+        return ans
