@@ -1,0 +1,27 @@
+class Solution:
+    def pattern (self, arr):
+        ans = []
+        n = len(arr)
+        
+        for i in range(n):
+            if self.check_palindrom(arr[i]):
+                return str(i) + ' ' + 'R'
+        
+        arr = self.transpose(arr, n)
+        
+        for i in range(n):
+            if self.check_palindrom(arr[i]):
+                return str(i) + ' ' + 'C'
+        
+        return '-1'
+    
+    def check_palindrom(self, lis):
+        if lis == lis[::-1]:
+            return True
+        return False
+    
+    def transpose(self, mat, n):
+        for i in range(n):
+            for j in range(i + 1, n):
+                mat[i][j], mat[j][i] = mat[j][i], mat[i][j]
+        return mat
