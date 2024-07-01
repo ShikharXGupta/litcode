@@ -1,0 +1,4 @@
+def convert(head):
+    
+    # code here
+    print(*a)
