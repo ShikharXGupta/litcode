@@ -1,0 +1,6 @@
+
+class Solution:
+    def search(self,arr,key):
+        if key in arr:
+            return arr.index(key)
+        return -1
