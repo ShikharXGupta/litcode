@@ -1,0 +1,15 @@
+class Solution:
+    def smallestNumber(self, s, d):
+        def sums(n):
+            ans = 0
+            
+            while n > 0:
+                ans += (n%10)
+                n = n //10
+            return ans
+        minim = 10**(d-1)
+        maxm = 10**d
+        for i in range(minim, maxm):
+            if s == sums(i):
+                return i
+        return -1
