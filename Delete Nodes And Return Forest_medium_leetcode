@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def helper(self,root:Optional[TreeNode],to_delete:List[int],res:List[TreeNode]):
+        if not root:
+            return None
+        root.left=self.helper(root.left,to_delete,res)
+        root.right=self.helper(root.right,to_delete,res)
+        if root.val in to_delete:
+            if root.left:
+                res.append(root.left)
+            if root.right:
+                res.append(root.right)
+            return None
+        return root
+
+    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
+        res=[]
+        node=self.helper(root,to_delete,res)
+        # if root.val not in to_delete:
+        #     res.append(root)
+        if node:
+            res.append(node)
+       
+        return res
