@@ -1,0 +1,18 @@
+   def constructLowerArray(self,arr):
+        from collections import namedtuple
+        from bisect import bisect
+        
+        Tuple = namedtuple("Tuple", ["value", "index"])
+        n = len(arr)
+        # sorted value, index pair desending
+        elements = sorted([Tuple(value, index) for index, value in enumerate(arr)], key=lambda t: (-t.value, -t.index))
+        ans = [0]*n
+        indexs = []
+        
+        for value, index in elements:
+            elements_on_right = n-1-index
+            # find the number of elements that are not smaller and on its right
+            i = bisect(indexs, index)
+            ans[index] = elements_on_right - (len(indexs)-i)
+            indexs.insert(i, index)
+        return ans
