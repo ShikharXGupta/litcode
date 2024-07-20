@@ -1,0 +1,12 @@
+class Solution:
+    def RemoveHalfNodes(self, node):
+        #code here
+        if node == None or (node.left== None and node.right == None):
+            return node
+        node.left=self.RemoveHalfNodes(node.left)
+        node.right=self.RemoveHalfNodes(node.right)
+        if node.left == None and node.right!=None:
+            return node.right
+        elif  node.right == None and node.left!=None:
+            return node.left
+        return node
